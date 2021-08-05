@@ -139,17 +139,19 @@
     }
 
     async function main() {
+      liff.ready.then(() => {
+        document.getElementById("isLoggedIn").append(liff.isLoggedIn())
+        if(liff.isLoggedIn()){
+          getEnvironment()
+          getUserProfile()
+          getContext()
+          getFriendship()
+          createUniversalLink()
+        } else {
+          liff.login()
+        }
+      })
       await liff.init({ liffId: "1656278306-0go4Q1vy" })
-      document.getElementById("isLoggedIn").append(liff.isLoggedIn())
-      if(liff.isLoggedIn()){
-        getEnvironment()
-        getUserProfile()
-        getContext()
-        getFriendship()
-        createUniversalLink()
-      } else {
-        liff.login()
-      }
     }
     main()
   </script>
